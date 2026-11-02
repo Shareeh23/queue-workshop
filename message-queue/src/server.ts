@@ -1,6 +1,7 @@
 import express from "express";
 import helmet from "helmet";
 import type { Request, Response } from "express";
+import errorHandler from "./middleware/error.middleware.ts";
 
 const app = express();
 
@@ -17,6 +18,8 @@ app.get("/health", (_req: Request, res: Response) => {
     timestamp: new Date().toISOString(),
   });
 });
+
+app.use(errorHandler);
 
 const server = app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
