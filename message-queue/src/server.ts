@@ -1,6 +1,9 @@
 import express from "express";
 import helmet from "helmet";
+
 import type { Request, Response } from "express";
+
+import fileRouter from "./routes/file.routes.ts";
 import errorHandler from "./middleware/error.middleware.ts";
 
 const app = express();
@@ -19,6 +22,7 @@ app.get("/health", (_req: Request, res: Response) => {
   });
 });
 
+app.use(fileRouter);
 app.use(errorHandler);
 
 const server = app.listen(PORT, () => {
