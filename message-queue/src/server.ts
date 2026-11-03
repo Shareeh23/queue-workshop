@@ -15,6 +15,19 @@ app.disable("x-powered-by");
 app.use(helmet());
 app.use(express.json());
 
+app.get("/", (_req: Request, res: Response) => {
+  res.status(200).json({
+    name: "Message Queue API",
+    description:
+      "Asynchronous document processing API powered by BullMQ and Redis.",
+    endpoints: {
+      health: "GET /health",
+      upload: "POST /files",
+      jobStatus: "GET /files/:jobId",
+    },
+  });
+});
+
 app.get("/health", (_req: Request, res: Response) => {
   res.status(200).json({
     status: "ok",
