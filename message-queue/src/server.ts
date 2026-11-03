@@ -22,7 +22,7 @@ app.get("/health", (_req: Request, res: Response) => {
   });
 });
 
-app.use(fileRouter);
+app.use("/files", fileRouter);
 app.use(errorHandler);
 
 const server = app.listen(PORT, () => {
